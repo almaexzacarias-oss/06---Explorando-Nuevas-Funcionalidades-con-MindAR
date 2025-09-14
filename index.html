@@ -17,6 +17,77 @@
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
+
+          
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+	const sceneEl = document.querySelector('a-scene');
+	let arSystem;
+	sceneEl.addEventListener('loaded', function () {
+	  arSystem = sceneEl.systems["mindar-image-system"];
+	});
+	const exampleTarget = document.querySelector('#example-target');
+	const examplePlane = document.querySelector('#example-plane');
+	const startButton = document.querySelector("#example-start-button");
+	const stopButton = document.querySelector("#example-stop-button");
+	const pauseButton = document.querySelector("#example-pause-button");
+	const pauseKeepVideoButton = document.querySelector("#example-pause-keep-video-button");
+	const unpauseButton = document.querySelector("#example-unpause-button");
+	startButton.addEventListener('click', () => {
+	  console.log("start");
+	  arSystem.start(); // start AR 
+	});
+	stopButton.addEventListener('click', () => {
+	  arSystem.stop(); // stop AR 
+	});
+	pauseButton.addEventListener('click', () => {
+	  arSystem.pause(); // pause AR, pause video
+	});
+	pauseKeepVideoButton.addEventListener('click', () => {
+	  arSystem.pause(true); // pause AR, keep video
+	});
+	unpauseButton.addEventListener('click', () => {
+	  arSystem.unpause(); // unpause AR and video
+	});
+	// arReady event triggered when ready
+	sceneEl.addEventListener("arReady", (event) => {
+	  // console.log("MindAR is ready")
+	});
+	// arError event triggered when something went wrong. Mostly browser compatbility issue
+	sceneEl.addEventListener("arError", (event) => {
+	  // console.log("MindAR failed to start")
+	});
+	// detect target found
+	exampleTarget.addEventListener("targetFound", event => {
+	  console.log("target found");
+	});
+	// detect target lost
+	exampleTarget.addEventListener("targetLost", event => {
+	  console.log("target lost");
+	});
+	// detect click event
+	examplePlane.addEventListener("click", event => {
+	  console.log("plane click");
+	});
+      });
+    </script>
+  </head>
+  <body>
+    <div style="position: absolute; z-index: 1000">
+      <button id="example-start-button">Start</button>
+      <button id="example-pause-button">Pause</button>
+      <button id="example-pause-keep-video-button">Pause (keep video)</button>
+      <button id="example-unpause-button">UnPause</button>
+      <button id="example-stop-button">Stop</button>
+    </div>
+
+
+    
+    
       <a-entity mindar-image-target="targetIndex: 0">
          <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
         <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.25 0.25 0.25" src="#raccoonModel" animation-mixer>
@@ -26,9 +97,11 @@
         <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.02 0.02 0.02" src="#bearModel" animation-mixer>
       
       </a-entity>
+      
     </a-scene>
   </body>
 </html>
+
 
 
 
