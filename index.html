@@ -10,7 +10,7 @@
     <a-scene mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/band.mind; maxTrack: 2" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
           <img id="card" src="./rin.jpg" />
-        
+         <img id="card2" src="./kagamine.jpg" />
         <a-asset-item id="bearModel" src="./kagamine_rin.glb"></a-asset-item>
         <a-asset-item id="raccoonModel" src="./kagamine_rin_chibi_3d.glb"></a-asset-item>
       </a-assets>
@@ -22,13 +22,14 @@
         <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.25 0.25 0.25" src="#raccoonModel" animation-mixer>
       </a-entity>
       <a-entity mindar-image-target="targetIndex: 1">
-        <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
+        <a-plane src="#card2" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
         <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.02 0.02 0.02" src="#bearModel" animation-mixer>
       
       </a-entity>
     </a-scene>
   </body>
 </html>
+
 
 
 
